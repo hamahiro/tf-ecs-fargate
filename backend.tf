@@ -1,7 +1,7 @@
 terraform {
   backend "remote" {
     hostname     = "app.terraform.io"
-    organization = "test-company"
+    organization = "jigsaw-ecstest"
     workspaces {
       name = "tf-ecs-fargate"
     }
