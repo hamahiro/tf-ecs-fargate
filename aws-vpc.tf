@@ -111,7 +111,7 @@ resource "aws_route_table" "rtb-private-1c" {
   vpc_id = aws_vpc.vpc.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.ngw-1c.id
+    gateway_id = aws_nat_gateway.ngw-1c.id
   }
   tags = {
     Name = "rtb-private-1c-${terraform.workspace}"
