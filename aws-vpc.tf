@@ -10,7 +10,7 @@ resource "aws_vpc" "vpc" {
 }
 
 # public subnet
-resource "aws_subnet" "public-1c" {
+resource "aws_subnet" "public_1c" {
   vpc_id                  = aws_vpc.vpc.id
   availability_zone       = var.vpc.az_c
   cidr_block              = var.vpc.pub_c_cidr
@@ -19,7 +19,7 @@ resource "aws_subnet" "public-1c" {
     Name = "vpc-public-1c-${terraform.workspace}"
   }
 }
-resource "aws_subnet" "public-1d" {
+resource "aws_subnet" "public_1d" {
   vpc_id                  = aws_vpc.vpc.id
   availability_zone       = var.vpc.az_d
   cidr_block              = var.vpc.pub_d_cidr
@@ -30,7 +30,7 @@ resource "aws_subnet" "public-1d" {
 }
 
 # private subnet
-resource "aws_subnet" "private-1c" {
+resource "aws_subnet" "private_1c" {
   vpc_id                  = aws_vpc.vpc.id
   availability_zone       = var.vpc.az_c
   cidr_block              = var.vpc.pri_c_cidr
@@ -39,7 +39,7 @@ resource "aws_subnet" "private-1c" {
     Name = "vpc-private-1c-${terraform.workspace}"
   }
 }
-resource "aws_subnet" "private-1d" {
+resource "aws_subnet" "private_1d" {
   vpc_id                  = aws_vpc.vpc.id
   availability_zone       = var.vpc.az_d
   cidr_block              = var.vpc.pri_d_cidr
@@ -50,7 +50,7 @@ resource "aws_subnet" "private-1d" {
 }
 
 # db subnet 
-resource "aws_subnet" "db-1c" {
+resource "aws_subnet" "db_1c" {
   vpc_id                  = aws_vpc.vpc.id
   availability_zone       = var.vpc.az_c
   cidr_block              = var.vpc.db_c_cidr
@@ -59,7 +59,7 @@ resource "aws_subnet" "db-1c" {
     Name = "vpc-db-1c-${terraform.workspace}"
   }
 }
-resource "aws_subnet" "db-1d" {
+resource "aws_subnet" "db_1d" {
   vpc_id                  = aws_vpc.vpc.id
   availability_zone       = var.vpc.az_d
   cidr_block              = var.vpc.db_d_cidr
@@ -78,7 +78,7 @@ resource "aws_internet_gateway" "igw" {
 }
 
 # eip for nat gateway
-resource "aws_eip" "eip-ngw-1" {
+resource "aws_eip" "eip_ngw_1" {
   vpc = true
 
   tags = {
@@ -86,9 +86,9 @@ resource "aws_eip" "eip-ngw-1" {
   }
 }
 # nat gateway
-resource "aws_nat_gateway" "ngw-1c" {
-  allocation_id = aws_eip.eip-ngw-1.id
-  subnet_id     = aws_subnet.public-1c.id
+resource "aws_nat_gateway" "ngw_1c" {
+  allocation_id = aws_eip.eip_ngw_1.id
+  subnet_id     = aws_subnet.public_1c.id
 
   tags = {
     Name = "ngw-1c-${terraform.workspace}"
@@ -96,7 +96,7 @@ resource "aws_nat_gateway" "ngw-1c" {
 }
 
 # route table
-resource "aws_route_table" "rtb-public" {
+resource "aws_route_table" "rtb_public" {
   vpc_id = aws_vpc.vpc.id
   route {
     cidr_block = "0.0.0.0/0"
@@ -107,11 +107,11 @@ resource "aws_route_table" "rtb-public" {
   }
 }
 
-resource "aws_route_table" "rtb-private-1c" {
+resource "aws_route_table" "rtb_private_1c" {
   vpc_id = aws_vpc.vpc.id
   route {
     cidr_block = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.ngw-1c.id
+    nat_gateway_id = aws_nat_gateway.ngw_1c.id
   }
   tags = {
     Name = "rtb-private-1c-${terraform.workspace}"
@@ -119,19 +119,19 @@ resource "aws_route_table" "rtb-private-1c" {
 }
 
 # route table association
-resource "aws_route_table_association" "assoc_public-1c" {
-  subnet_id      = aws_subnet.public-1c.id
-  route_table_id = aws_route_table.rtb-public.id
+resource "aws_route_table_association" "assoc_public_1c" {
+  subnet_id      = aws_subnet.public_1c.id
+  route_table_id = aws_route_table.rtb_public.id
 }
-resource "aws_route_table_association" "assoc_public-1d" {
-  subnet_id      = aws_subnet.public-1d.id
-  route_table_id = aws_route_table.rtb-public.id
+resource "aws_route_table_association" "assoc_public_1d" {
+  subnet_id      = aws_subnet.public_1d.id
+  route_table_id = aws_route_table.rtb_public.id
 }
-resource "aws_route_table_association" "assoc_private-1c" {
-  subnet_id      = aws_subnet.private-1c.id
-  route_table_id = aws_route_table.rtb-private-1c.id
+resource "aws_route_table_association" "assoc_private_1c" {
+  subnet_id      = aws_subnet.private_1c.id
+  route_table_id = aws_route_table.rtb_private_1c.id
 }
-resource "aws_route_table_association" "assoc_private-1d" {
-  subnet_id      = aws_subnet.private-1d.id
-  route_table_id = aws_route_table.rtb-private-1c.id
+resource "aws_route_table_association" "assoc_private_1d" {
+  subnet_id      = aws_subnet.private_1d.id
+  route_table_id = aws_route_table.rtb_private_1c.id
 }
