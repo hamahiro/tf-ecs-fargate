@@ -63,6 +63,7 @@ resource "aws_security_group_rule" "from_fargate_to_rds" {
   to_port                  = 3306
   source_security_group_id = aws_security_group.sg-fargate.id
   description              = "from Fargate to RDS"
+}
 
 resource "aws_security_group_rule" "eggress_alb" {
   security_group_id = aws_security_group.sg_alb.id
