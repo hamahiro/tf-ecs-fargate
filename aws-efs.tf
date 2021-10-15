@@ -2,6 +2,7 @@
 resource "aws_efs_file_system" "efs" {
   creation_token                  = "fargate-efs"
   throughput_mode                 = "bursting"
+  encrypted                       = "true"
 
   tags = {
     Name = "fargate-efs-${terraform.workspace}"
