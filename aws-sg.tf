@@ -41,7 +41,7 @@ resource "aws_security_group_rule" "from_alb_to_fargate" {
   protocol                 = "tcp"
   from_port                = 80
   to_port                  = 80
-  source_security_group_id = aws_security_group.alb.id
+  source_security_group_id = aws_security_group.sg_alb.id
   description              = "from ALB to Fargate"
 }
  
@@ -51,7 +51,7 @@ resource "aws_security_group_rule" "from_fargate_to_efs" {
   protocol                 = "tcp"
   from_port                = 2049
   to_port                  = 2049
-  source_security_group_id = aws_security_group.fargate.id
+  source_security_group_id = aws_security_group.sg_fargate.id
   description              = "from Fargate to EFS"
 }
  
@@ -61,7 +61,7 @@ resource "aws_security_group_rule" "from_fargate_to_rds" {
   protocol                 = "tcp"
   from_port                = 3306
   to_port                  = 3306
-  source_security_group_id = aws_security_group.sg-fargate.id
+  source_security_group_id = aws_security_group.sg_fargate.id
   description              = "from Fargate to RDS"
 }
 

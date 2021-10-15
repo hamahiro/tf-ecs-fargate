@@ -4,7 +4,7 @@ resource "aws_efs_file_system" "efs" {
   throughput_mode                 = "bursting"
 
   tags = {
-    Name = "fargate-efs-${terrraform.workspace}"
+    Name = "fargate-efs-${terraform.workspace}"
   }
 }
 
