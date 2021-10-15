@@ -1,25 +1,25 @@
 ## aws-sg.tf
 # Security Group
 resource "aws_security_group" "alb" {
-  name        = "sg alb ${terraform.workspace}"
+  name        = "sg_alb_${terraform.workspace}"
   description = "for ALB"
   vpc_id      = aws_vpc.vpc.id
 }
  
 resource "aws_security_group" "fargate" {
-  name        = "sg fargate ${terraform.workspace}"
+  name        = "sg_fargate_${terraform.workspace}"
   description = "for Fargate"
   vpc_id      = aws_vpc.vpc.id
 }
  
 resource "aws_security_group" "efs" {
-  name        = "sg efs ${terraform.workspace}"
+  name        = "sg_efs_${terraform.workspace}"
   description = "for EFS"
   vpc_id      = aws_vpc.vpc.id
 }
  
 resource "aws_security_group" "rds" {
-  name        = "sg rds ${terraform.workspace}"
+  name        = "sg_rds_${terraform.workspace}"
   description = "for RDS"
   vpc_id      = aws_vpc.vpc.id
 }
