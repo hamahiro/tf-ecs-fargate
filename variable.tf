@@ -32,7 +32,7 @@ variable "rds" {
     family   = string
     engine   = string
     class    = string
-    version  = number
+    version  = string
     dbgsize  = number
     username = string
     password = string
