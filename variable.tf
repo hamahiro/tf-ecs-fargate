@@ -43,7 +43,7 @@ variable "rds" {
     engine   = "mysql"
     class    = "db.t3.micro"
     version  = "8.0"
-    dggzise  = "30"
+    dbgzise  = "30"
     username = "admin"
     password = "passw0rd!"
     bkperiod = "7"
