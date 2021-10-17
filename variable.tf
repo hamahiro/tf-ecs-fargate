@@ -41,9 +41,9 @@ variable "rds" {
   default = {
     family   = "mysql8.0"
     engine   = "mysql"
-    class    = "db.t3.micro"
-    version  = "8.0"
-    dbgsize  = "30"
+    class    = "db.t2.micro"
+    version  = "8.0.25"
+    dbgsize  = "20"
     username = "admin"
     password = "passw0rd!"
     bkperiod = "7"
