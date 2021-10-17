@@ -1,5 +1,6 @@
-# variable.tf
+## variable.tf
 
+# vpc
 variable "vpc" {
   type = object({
     cidr       = string
@@ -25,3 +26,26 @@ variable "vpc" {
   }
 }
 
+# rds
+variable "rds" {
+  type = object({
+    family   = string
+    engine   = string
+    class    = string
+    version  = number
+    dbgsize  = number
+    username = string
+    password = string
+    bkperiod = number
+  })
+  default = {
+    family   = "mysql8.0"
+    engine   = "mysql"
+    class    = "db.t3.micro"
+    version  = "8.0"
+    dggzise  = "30"
+    username = "admin"
+    password = "passw0rd!"
+    bkperiod = "7"
+  }
+}
