@@ -23,8 +23,8 @@ resource "aws_db_instance" "rds" {
   instance_class            = var.rds.class
   storage_type              = "gp2"
   allocated_storage         = var.rds.dbgsize
-  max_allocated_storage     = "3000"
-  storage_encrypted         = "true"
+  max_allocated_storage     = "2000"
+  #storage_encrypted         = "true"
   username                  = var.rds.username
   password                  = var.rds.password
   final_snapshot_identifier = "rds-final-${terraform.workspace}"
