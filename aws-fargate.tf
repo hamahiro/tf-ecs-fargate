@@ -26,7 +26,7 @@ resource "aws_ecs_task_definition" "task" {
       root_directory = "/"
     }
   }
-  requirequires_compatibilities = [
+  requires_compatibilities = [
     "FARGATE"
   ]
 }
