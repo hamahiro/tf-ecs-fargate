@@ -19,7 +19,7 @@ resource "aws_ecs_task_definition" "ecs_task" {
   execution_role_arn    = aws_iam_role.fargate_task_execution.arn
 
   volume {
-    name = "fargate-efs"
+    name = "fargate-efs-${terraform.workspace}"
 
     efs_volume_configuration {
       file_system_id = aws_efs_file_system.efs.id

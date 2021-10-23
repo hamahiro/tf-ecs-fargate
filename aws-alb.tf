@@ -20,7 +20,8 @@ resource "aws_alb_target_group" "tg-alb" {
   target_type = "ip"
 
   health_check {
-    path = "/"
+    path    = "/"
+    matcher = "200-302"
   }
 }
 
