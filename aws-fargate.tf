@@ -10,7 +10,7 @@ resource "aws_ecs_cluster" "ecs_cluster" {
 }
 
 # task definition
-resource "aws_ecs_task_definition" "task" {
+resource "aws_ecs_task_definition" "ecs_task" {
   family                = "ecs-task-${terraform.workspace}"
   container_definitions = file("./tasks/container_definitions.json")
   cpu                   = var.ecs_task.cpu
@@ -32,17 +32,17 @@ resource "aws_ecs_task_definition" "task" {
 }
 
 # service
-resource "aws_ecs_service" "service" {
+resource "aws_ecs_service" "ecs_service" {
   name             = "ecs-service-${terraform.workspace}"
   cluster          = aws_ecs_cluster.ecs_cluster.arn
-  task_definition  = aws_ecs_task_definition.task.arn
+  task_definition  = aws_ecs_task_definition.ecs_task.arn
   desired_count    = 2
   launch_type      = "FARGATE"
   platform_version = "1.4.0"
 
   load_balancer {
     target_group_arn = aws_alb_target_group.tg-alb.arn
-    container_name   = "wordpress-${terraform.workspace}"
+    container_name   = "wordpress"
     container_port   = "80"
   }
 
