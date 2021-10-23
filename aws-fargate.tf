@@ -33,7 +33,7 @@ resource "aws_ecs_task_definition" "task" {
 
 # service
 resource "aws_ecs_service" "service" {
-  name             = "ecs-service"
+  name             = "ecs-service-${terraform.workspace}"
   cluster          = aws_ecs_cluster.ecs_cluster.arn
   task_definition  = aws_ecs_task_definition.task.arn
   desired_count    = 2
@@ -42,7 +42,7 @@ resource "aws_ecs_service" "service" {
 
   load_balancer {
     target_group_arn = aws_alb_target_group.tg-alb.arn
-    container_name   = "wordpress-{terraform.workspace}"
+    container_name   = "wordpress-${terraform.workspace}"
     container_port   = "80"
   }
 
