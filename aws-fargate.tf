@@ -41,7 +41,7 @@ resource "aws_ecs_service" "service" {
   platform_version = "1.4.0"
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.tg-alb.arn
+    target_group_arn = aws_alb_target_group.tg-alb.arn
     container_name   = "wordpress-{terraform.workspace}"
     container_port   = "80"
   }
