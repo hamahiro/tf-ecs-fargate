@@ -27,6 +27,7 @@ resource "aws_db_instance" "rds" {
   #storage_encrypted         = "true"
   username                  = var.rds.username
   password                  = var.rds.password
+  name                      = var.rds.dbname
   final_snapshot_identifier = "rds-final-${terraform.workspace}"
   db_subnet_group_name      = aws_db_subnet_group.dbsg-rds.name
   parameter_group_name      = aws_db_parameter_group.pg-rds.name

@@ -36,6 +36,7 @@ variable "rds" {
     dbgsize  = number
     username = string
     password = string
+    dbname   = string
     bkperiod = number
   })
   default = {
@@ -45,7 +46,8 @@ variable "rds" {
     version  = "8.0.25"
     dbgsize  = "20"
     username = "admin"
-    password = "passw0rd!"
+    password = "wordpress-db-passw0rd!"
+    dbname   = "wordpress"
     bkperiod = "7"
   }
 }
