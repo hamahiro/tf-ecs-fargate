@@ -1,4 +1,4 @@
-## alb 
+## aws-alb.tf
 resource "aws_alb" "alb" {
   name            = "alb-${terraform.workspace}"
   security_groups = [aws_security_group.alb.id]

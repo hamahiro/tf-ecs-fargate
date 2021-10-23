@@ -1,4 +1,4 @@
-## aws-efs
+## aws-efs.tf
 resource "aws_efs_file_system" "efs" {
   creation_token                  = "fargate-efs"
   throughput_mode                 = "bursting"

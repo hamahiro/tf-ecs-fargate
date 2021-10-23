@@ -49,3 +49,15 @@ variable "rds" {
     bkperiod = "7"
   }
 }
+
+# fargate
+variable "ecs_task" {
+  type = object({
+    cpu    = number
+    memory = number
+  })
+  default = {
+    cpu    = 256
+    memory = 512
+  }
+}
