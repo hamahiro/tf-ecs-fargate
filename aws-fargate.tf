@@ -33,7 +33,7 @@ resource "aws_ecs_task_definition" "task" {
 
 # service
 resource "aws_ecs_service" "service" {
-  name             = "ecs-service-${terraform.workspace}"
+  name             = "ecs-service"
   cluster          = aws_ecs_cluster.ecs_cluster.arn
   task_definition  = aws_ecs_task_definition.task.arn
   desired_count    = 2
