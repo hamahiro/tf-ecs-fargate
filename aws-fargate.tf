@@ -2,10 +2,11 @@
 # cluster
 resource "aws_ecs_cluster" "ecs_cluster" {
   name = "ecs-cluster-${terraform.workspace}"
-}
-setting {
-  name = "containerInsights"
-  value = "disabled"
+
+  setting {
+    name  = "containerInsights"
+    value = "disabled"
+  }
 }
 
 # task definition
@@ -27,22 +28,22 @@ resource "aws_ecs_task_definition" "task" {
   }
   requirequires_compatibilities = [
     "FARGATE"
-  ] 
+  ]
 }
 
 # service
 resource "aws_ecs_service" "service" {
-  name = "ecs-service-${terraform.workspace}"
-  cluster = aws_ecs_cluster.ecs_cluster.arn
-  task_definition = aws_ecs_task_definition.task.arn
-  desired_count = 2
-  launch_type = "FARGATE"
+  name             = "ecs-service-${terraform.workspace}"
+  cluster          = aws_ecs_cluster.ecs_cluster.arn
+  task_definition  = aws_ecs_task_definition.task.arn
+  desired_count    = 2
+  launch_type      = "FARGATE"
   platform_version = "1.4.0"
 
   load_balancer {
     target_group_arn = aws_lb_target_group.tg-alb.arn
-    container_name = "wordpress-{terraform.workspace}"
-    container_port = "80"
+    container_name   = "wordpress-{terraform.workspace}"
+    container_port   = "80"
   }
 
   network_configuration {
@@ -55,5 +56,5 @@ resource "aws_ecs_service" "service" {
     ]
     assign_public_ip = false
   }
-  
+
 }
