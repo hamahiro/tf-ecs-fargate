@@ -37,4 +37,5 @@ resource "aws_db_instance" "rds" {
   ]
   backup_retention_period = var.rds.bkperiod
   apply_immediately       = true
+  skip_final_snapshot     = true
 }
