@@ -12,7 +12,7 @@ resource "aws_ecs_cluster" "ecs_cluster" {
 # task definition
 resource "aws_ecs_task_definition" "task" {
   family                = "ecs-task-${terraform.workspace}"
-  container_definitions = file("tasks/container_definitions.json")
+  container_definitions = file("tasks/container_definition.json")
   cpu                   = var.ecs_task.cpu
   memory                = var.ecs_task.memory
   network_mode          = "awsvpc"
