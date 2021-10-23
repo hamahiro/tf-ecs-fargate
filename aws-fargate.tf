@@ -15,7 +15,7 @@ resource "aws_ecs_task_definition" "task" {
   container_definitions = file("tasks/container_definitions.json")
   cpu                   = var.ecs_task.cpu
   memory                = var.ecs_task.memory
-  network_mode          = awsvpc
+  network_mode          = "awsvpc"
   execution_role_arn    = aws_iam_role.fargate_task_execution.arn
 
   volume {
