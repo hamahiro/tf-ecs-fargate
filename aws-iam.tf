@@ -6,7 +6,13 @@ resource "aws_iam_role" "fargate_task_execution" {
 }
 
 # attach AmazonECSTaskExecutionRolePolicy
-resource "aws_iam_role_policy_attachment" "execution_attach" {
-  role       = aws_iam_role.fargate_task_execution.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+#resource "aws_iam_role_policy_attachment" "execution_attach" {
+#  role       = aws_iam_role.fargate_task_execution.name
+#  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+#}
+
+resource "aws_iam_role_policy" "fargate_task_execution" {
+  name = "policy-task-execution-${terraform.workspace}"
+  role = aws_iam_role.fargate_task_execution.name
+  policy = file("./roles/fargate_task_execution_policy.json")  
 }
